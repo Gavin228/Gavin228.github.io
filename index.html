@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta http-equiv="refresh" content="0; url=http://[240e:95d:c01:700::4:8a5]:5000/">
+    <meta charset="UTF-8">
     <title>正在跳转...</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .spinner {
+            border: 6px solid #ccc;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // 当前路径
+            const path = window.location.pathname;
+            // 目标地址
+            const target = `http://[240e:95d:c01:700::4:8a5]:5000${path}`;
+            // 1秒后跳转，给Loading动画一点时间
+            setTimeout(() => {
+                window.location.href = target;
+            }, 1000);
+            // 更新备用链接
+            document.getElementById("jump").href = target;
+        };
+    </script>
 </head>
 <body>
-脚本失效，请点击 <a href="http://[240e:95d:c01:700::4:8a5]:5000/">这里</a>。
+    <div class="spinner"></div>
+    <div>正在跳转，请稍候...</div>
+    <a id="jump" href="#">如果没有自动跳转，请点击这里</a>
 </body>
 </html>
